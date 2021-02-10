@@ -1,7 +1,7 @@
 if('serviceWorker' in navigator) {
   window.addEventListener('load', function(){
     // service worker container
-    navigator.serviceWorker.register('service-worker.js')
+    navigator.serviceWorker.register('/service-worker.js', {scope: '/'})
     .then((registration) => {
       console.log('Service worker has loaded successfully.', registration); 
       // try {
