@@ -8,7 +8,7 @@ fetch("/api/transaction")
   })
   .then(data => {
     // save db data on global variable
-    console.log('index.js, /api/transaction, fetch data =', data);    
+    // console.log('index.js, /api/transaction, fetch data =', data);    
     transactions = data;
     
     populateTotal();
@@ -16,8 +16,8 @@ fetch("/api/transaction")
     populateChart();
   })
   .catch((err) => {
-    console.log('index.js, /api/transaction, fetch err =', err);
-  });
+  //   console.log('index.js, /api/transaction, fetch err =', err);
+  // });
 
 
 function populateTotal() {

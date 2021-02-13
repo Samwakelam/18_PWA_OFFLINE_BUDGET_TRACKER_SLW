@@ -4,11 +4,6 @@ if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js', {scope: '/'})
     .then((registration) => {
       console.log('Service worker has loaded successfully.', registration); 
-      // try {
-      //   navigator.serviceWorker.controller.postMessage({ command: "sync-images" });
-      // } catch (er) {
-      //   console.log("sw", er);
-      // }
     })
     .catch ((err) => {
       console.log('service worker has not loaded successfully.', err);
@@ -43,7 +38,6 @@ request.onerror = function(event) {
   console.log("Error:" + event.target.errorCode);
 };
 
-
 function saveRecord(record) {
   const transaction = db.transaction(["pending"], "readwrite");
   const store = transaction.objectStore("pending");
@@ -51,11 +45,11 @@ function saveRecord(record) {
 }
 
 function checkDatabase() {
-  console.log('database being checked.');
+  // console.log('database being checked.');
   const transaction = db.transaction(["pending"], "readwrite");
   const store = transaction.objectStore("pending");
   const getAll = store.getAll();
-  console.log("get all= ", getAll);
+  // console.log("get all= ", getAll);
   getAll.onsuccess = function() {
     if (getAll.result.length > 0) {
       fetch("/api/transaction/bulk", {
@@ -67,7 +61,7 @@ function checkDatabase() {
         }
       })
       .then(response => {        
-        console.log('sw, CheckDatabase response', response)
+        // console.log('sw, CheckDatabase response', response)
         response.json();
       })
       .then(() => {
@@ -81,9 +75,9 @@ function checkDatabase() {
     }
   };
 
-  getAll.onerror = function(event){
-    console.log(event)
-  }
+  // getAll.onerror = function(event){
+  //   console.log(event)
+  // }
 }
 
 // listen for app coming back online
