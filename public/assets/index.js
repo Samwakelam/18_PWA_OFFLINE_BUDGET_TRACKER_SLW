@@ -19,10 +19,6 @@ fetch("/api/transaction")
     console.log('index.js, /api/transaction, fetch err =', err);
   });
 
-  
-
-
-
 
 function populateTotal() {
   // reduce transaction amounts to a single total value
