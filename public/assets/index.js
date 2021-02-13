@@ -3,11 +3,12 @@ let myChart;
 
 fetch("/api/transaction")
   .then(response => {
+    // console.log('index.js, /api/transaction, response =', response.status);    
     return response.json();
   })
   .then(data => {
     // save db data on global variable
-    console.log('fetch data =', data);
+    console.log('index.js, /api/transaction, fetch data =', data);    
     transactions = data;
     
     populateTotal();
@@ -15,8 +16,9 @@ fetch("/api/transaction")
     populateChart();
   })
   .catch((err) => {
-    console.log('fetch err =', err);
+    console.log('index.js, /api/transaction, fetch err =', err);
   });
+
 
 function populateTotal() {
   // reduce transaction amounts to a single total value
