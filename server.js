@@ -2,8 +2,9 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
+require('dotenv').config();
 
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -15,16 +16,29 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/BudgetTracker" || process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-  useFindAndModify: false
-});
-
 // routes
 app.use(require("./routes/api.js"));
 
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+
+const dbUrl = process.env.DATABASE;
+const host = process.env.HOST;
+const options = {
+  useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useCreateIndex: true,
+  useFindAndModify: false
+};
+
+mongoose.connect(
+  process.env.MONGODB_URI || `mongodb://${host}/${dbUrl}`,
+  options
+)
+.then(() => {
+	app.listen(PORT, function () {
+		console.log('Node server is running...');
+		console.log('Listening on port:', PORT);
+	});
+})
+.catch((err) => {
+	console.log(err);
 });
