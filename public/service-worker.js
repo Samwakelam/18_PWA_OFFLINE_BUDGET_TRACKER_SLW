@@ -8,12 +8,11 @@ const URL_TO_CACHE = [
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
 
-  '/manifest.json',
-
   // This needs to be included not '/index.htm', or it works explicitly for /index.html search.
   '/',
   '/index.html',
-  // to cache the last data fetch you made
+  'manifest.json',
+  // // to cache the last data fetch you made
   '/api/transaction',
 
  'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
@@ -22,16 +21,16 @@ const URL_TO_CACHE = [
 
 ];
 
-
 // EVENT LISTENERS ------------------------------------------------------------
 // TASK 1 - cache static assets
 self.addEventListener('install', function (event) {
   // on install wait until the cacheDB is open and add all static files to cache
+  console.log('install event');
   event.waitUntil(
     caches
     .open(CACHE_NAME)
     .then((cache) => {
-      // console.log('cacheStaticAssets, cache =', cache);
+      console.log('cacheStaticAssets, cache =', cache);
       return cache.addAll(URL_TO_CACHE);
     })
     .catch((err) => {
@@ -50,7 +49,7 @@ self.addEventListener('activate', function (event) {
     caches
     .keys()
     .then((cacheNames) => {
-      // console.log('service worker, deleteOldCaches, keyList =', keylist);
+      console.log('service worker, deleteOldCaches, keyList =', keylist);
       return Promise.all(
         cacheNames.map((cacheName) => {
          
@@ -99,8 +98,8 @@ self.addEventListener('fetch', function (event) {
     caches
     .match(event.request)
     .then((response) => {
-      // console.log('serve Static Assets cache function, response =', response);
-      // console.log('serve Static Assets cache function, event.request =', event.request);
+      console.log('serve Static Assets cache function, response =', response);
+      console.log('serve Static Assets cache function, event.request =', event.request);
       if(response){
         // fall back to network
         return response || fetch(event.request);
@@ -112,7 +111,6 @@ self.addEventListener('fetch', function (event) {
       return caches.match('/index.html');
     })
   );
-
     
 });
 

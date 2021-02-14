@@ -1,21 +1,22 @@
 {
   "background_color": "#FFFFFF",
   "display": "standalone",
+  "name ": "Budgets app",
+  "short_name": "Budgets",
+  "scope": "/",
+  "start_url":"/",
   "icons" : [
       {
         "src" : "icons/icon-192x192.png",
-        "type" : "image/png",
         "sizes" : "192x192",
-        "purpose" : " any maskable"
+        "type" : "image/png",
+        "purpose" : "maskable any"
       },
       {
         "src" : "icons/icon-512x512.png",
-        "type" : "image/png",
         "sizes" : "512x512",
-        "purpose" : " any maskable"
+        "type" : "image/png",
+        "purpose" : "maskable any"
       }
-    ],
-  "name ": "Budgets app",
-  "start_url":"/"
-
+    ]
 }

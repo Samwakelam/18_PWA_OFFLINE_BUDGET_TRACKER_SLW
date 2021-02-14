@@ -75,9 +75,9 @@ function checkDatabase() {
     }
   };
 
-  // getAll.onerror = function(event){
-  //   console.log(event)
-  // }
+  getAll.onerror = function(event){
+    console.log(event)
+  }
 }
 
 // listen for app coming back online
